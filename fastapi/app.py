@@ -4,6 +4,8 @@ from pydantic import BaseModel
 from database import *
 from routes.users import router
 from routes.book import router as books_router
+from routes.equipment_stock import router as stock_router
+
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -17,7 +19,7 @@ app.add_middleware(
         allow_headers=["*"],    
     )
 app.include_router(books_router)
-
+app.include_router(stock_router)
 app.include_router(router, prefix="/api")
 
 @app.on_event("startup")
